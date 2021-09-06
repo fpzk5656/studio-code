@@ -10,6 +10,7 @@ using namespace std;
 // N 이하의 자연수 중에서 3의 배수이거나, 5의 배수인 수를 모두 합한 값을
 // 반환하는 함수 func1(int N)을 작성하라. N은 5만 이하의 자연수이다.
 
+// 시간복잡도 O(N^2)
 int func1(int N)
 {
   int length = N;
@@ -24,6 +25,7 @@ int func1(int N)
   return result;
 }
 
+// 시간복잡도 O(N)
 // int func2(int arr[], int N)
 // {
 //   for(int i = 0; i < N; i++)
@@ -64,6 +66,26 @@ int func2(int arr[], int N)
   return 0;
 }
 
+int func3(int N)
+{
+  for(int i = 1; i <= N; i++)
+  {
+    if(i * i == N) return 1;
+  }
+  return 0;
+}
+
+int func4(int N)
+{
+  int num = 2;
+  while(num * 2 <= N)
+  {
+    num *= 2;
+  }
+  
+    return num;
+}
+
 int main()
 {
   cout << func1(16) << endl;
@@ -77,5 +99,13 @@ int main()
   cout << func2(a,3) << endl;
   cout << func2(b,2) << endl;
   cout << func2(c,4) << endl;
+  cout << "====" << endl;
+  cout << func3(9) << endl;
+  cout << func3(693953651) << endl;
+  cout << func3(756580036) << endl;
+  cout << "====" << endl;
+  cout << func4(5) <<endl;
+  cout << func4(97615282) << endl;
+  cout << func4(1024) << endl;
   return 0;
 }
