@@ -3,44 +3,26 @@ using namespace std;
 #include <vector>
 #include <algorithm>
 #include <cstring>
+#include <list>
 
 // 바킹독 0x4강
 
-// 야매 연결리스트
-const int MX = 1000005;
-int dat[MX], pre[MX], nxt[MX];
-int unused = 1;
-
-// dat[i] i번지 원소의 값
-// pre[i] i번지 원소의 이전 원소 값
-// nxt[i] i번지 원소의 다음 원소 값
-// unused 는 현재 사용되지 않는 인덱스. 즉, 새로운 원소가 들어갈 수 있는 위치라 추가할 때마다 ++ 
-
-// 연결리스트 이므로 배열의 인덱스 번호랑 내용물이 순서대로 위치한게 아닐 수 있다...연결리스트 안에선
-
-void traverse()
-{
-    // 더미 인덱스 다음것부터 시작해서 연결된 다음 것들을 계속 출력
-    int cur = nxt[0];
-    while(cur != -1)
-    {
-        cout << dat[cur] << ' ';
-        cur = nxt[cur];
-    }
-    cout << "\n\n";
-}
-
-
 int main()
 {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
+    list<int> L = {1,2}; // 1 2
+    list<int>::iterator t = L.begin(); // t는 1을 가리키는 중
+    L.push_front(10); // 10 1 2
+    cout << *t << '\n'; // t가 가리키는 값 = 1을 출력
+    L.push_back(5); // 10 1 2 5
+    L.insert(t, 6); // t가 가리키는 곳 앞에 6을 삽입, 10 6 1 2 5
+    t++;    // t를 1칸 앞으로 전진, 현재 t가 가리키는 값은 2
+    t = L.erase(t); // t가 가리키는 값을 제거, 그 다음 원소인 5의 위치를 반환
+                    // 10 6 1 5, t가 가리키는 값은 5
+    cout << *t << '\n';  // 5
+    for(auto i : L) cout << i << ' ';   //iterator가 치기 싫다면, auto t = L.begin();를 해왔어도 괜찮다 함
+    cout << '\n';
+    for(list<int>::iterator it = L.begin(); it != L.end(); it++)    //C++11 미만이라면, 이렇게 돌리는 수 밖에..
+        cout << *it << ' ';
 
-    //fill(시작위치, 끝위치, 초기화할 숫자)
-    fill(pre, pre + MX, -1);
-    fill(nxt, nxt + MX, -1);
-    
-
-    traverse(); // 출력 함수
     return 0;
 }

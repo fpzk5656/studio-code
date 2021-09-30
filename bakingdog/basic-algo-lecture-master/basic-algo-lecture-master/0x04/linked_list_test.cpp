@@ -7,20 +7,13 @@ int unused = 1;
 
 void insert(int addr, int num)
 {
-  // 예를 들어 13이 2번지이고, 
-  // 13 뒤에 20이라는 숫자를 넣고 싶다면
-  // (2, 20)을 넣는 것이다.
-
-  // addr의 다음 인덱스의 이전 인덱스에 추가한 것의 주소를 준다
-  pre[nxt[addr]] = unused;
-  // 추가한 것에 숫자 넣고,
-  // 이전 인덱스 주소는 addr로
   dat[unused] = num;
   pre[unused] = addr;
 
-  // 추가한 것의 다음 주소는 addr의 다음 주소를 받고
-  // addr의 다음주소는 추가한 인덱스로 한다
   nxt[unused] = nxt[addr];
+
+  // 삽입할 위치의 다음 원소가 존재할 때만
+  if(nxt[addr] != -1)pre[nxt[addr]] = unused;
   nxt[addr] = unused;
 
   unused++;
@@ -29,8 +22,13 @@ void insert(int addr, int num)
 void erase(int addr)
 {
   nxt[pre[addr]] = nxt[addr];
-  pre[nxt[addr]] = pre[addr];
-  dat[addr] = -1;
+  // 지우는 원소가 제일 마지막 원소라 다음 것이 -1일 경우를 제외하기
+  if(nxt[addr] != -1)pre[nxt[addr]] = pre[addr];
+  //dat[addr] = -1; 어차피 안쓰기 때문에 굳이 -1로 해줄 필요 없다함
+  // 지우는 원소의 노드에 저장되었는 주소들만 다른 노드가 가져가는 수준이라
+  // 메모리가 남을 염려가 있지만.. 코딩테스트에서는 딱히 문제가 없다함 
+  // 코딩 테스트 특유의 제한된 함수 사용 횟수 때문에..그래서 배열로 제한에 넉넉하게 뚝딱 만든 야매 연결리스트임
+  // 실무에서는 사용해서는 안되는..
 }
 
 void traverse(){
