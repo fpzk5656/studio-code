@@ -16,17 +16,36 @@ int unused = 1;
 
 void insert(int addr, int num)
 {
-
+    // 새로운 원소를 생성
+    dat[unused] = num;
+    // 새 원소의 pre값에 삽입할 위치의 주소를 대입
+    pre[unused] = addr;
+    // 새 원소의 nxt값에 삽입할 위치의 nxt값을 대입
+    nxt[unused] = nxt[addr];
+    // 삽입할 위치의 nxt 값과 삽입할 위치의 다음 원소의 pre 값을 새 원소로 변경
+    if(nxt[addr] != -1) pre[nxt[addr]] = unused;
+    nxt[addr] = unused;
+    // unused 1 증가
+    unused++;
 }
 
 void erase(int addr)
 {
-
+    // addr의 이전 주소의 nxt 값을 addr의 nxt로
+    // addr의 nxt값이 -1이 아니먄, nxt의 pre값을 addr의 pre로
+    nxt[pre[addr]] = nxt[addr];
+    if(nxt[addr] != -1) pre[nxt[addr]] = pre[addr];
 }
 
 void traversal()
 {
-
+    int cur = nxt[0];
+    while(cur != -1)
+    {
+        cout << dat[cur] << ' ';
+        cur = nxt[cur];
+    }
+    cout << "\n\n";
 }
 
 // 백준 1406 : 에디터 문제
