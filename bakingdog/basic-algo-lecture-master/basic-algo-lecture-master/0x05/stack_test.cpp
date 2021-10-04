@@ -1,23 +1,29 @@
-#include <bits/stdc++.h>
+//#include <bits/stdc++.h>
+#include <iostream>
 using namespace std;
 
 const int MX = 1000005;
 int dat[MX];
 int pos = 0;
 
-void push(int x){
-
+void push(int x)
+{
+  dat[pos] = x;
+  pos++;
 }
 
-void pop(){
-
+void pop()
+{
+  pos--;
 }
 
-int top(){
-
+int top()
+{
+  return dat[pos-1];
 }
 
-void test(){
+void test()
+{
   push(5); push(4); push(3);
   cout << top() << '\n'; // 3
   pop(); pop();
@@ -28,6 +34,7 @@ void test(){
   cout << top() << '\n'; // 10
 }
 
-int main(void) {
+int main(void) 
+{
 	test();
 }
