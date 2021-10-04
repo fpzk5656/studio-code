@@ -6,62 +6,84 @@ using namespace std;
 #include <list>
 #include <string>
 
-struct ListNode
+const int MX = 1000005;
+int dat[MX];
+int pos = 0;
+
+void pushX(int X)
 {
-    string val;
-    ListNode* next;
-};
-
-class List
+    dat[pos++] = X;
+}
+void pop()
 {
-    public:
-        ListNode* head;
-
-        void push(string val)
-        {
-            ListNode* node = new ListNode();
-            node->val = val;
-            node->next = nullptr;
-
-            if(head == nullptr)
-            {
-                head = node;
-            }
-            else
-            {
-                ListNode* t = head;
-                while(t->next != nullptr)
-                {
-                    t = t->next;
-                }
-                t->next = node;
-            }
-        }
-
-        bool isCycle(ListNode* head)
-        {
-            ListNode* slower = head;
-            ListNode* faster = head;
-            bool flag = false;
-
-            while(slower && faster && faster->next)
-            {
-                slower = slower->next;
-                faster = faster->next->next;
-                if(slower == faster)
-                {
-                    flag = true;
-                    break;
-                }
-            }
-            return flag;
-        }
-};
+    if(pos != 0)
+    {
+    cout << dat[pos-1] << '\n'; 
+        pos--;
+    }
+    else
+    {
+      cout << -1 << '\n';   
+    }
+}
+void size()
+{
+    cout << pos << '\n';
+}
+void empty()
+{
+    if(pos == 0)cout << 1 << '\n';
+    else
+    {
+        cout << 0 << '\n';
+    }
+}
+void top()
+{
+    if(pos != 0)
+    {
+    cout << dat[pos-1] << '\n';
+    }
+    else
+    {
+        cout << -1 << '\n';
+    }
+}
 
 int main()
 {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
+    int k = 0;
+    cin >> k;
+    
+    while(k > 0)
+    {
+        string N = "";
+        cin >> N;
+    
+        if(N == "push")
+        {
+            int X;
+            cin >> X;
+            pushX(X);
+        }
+        else if(N == "pop")
+        {
+            pop();
+        }
+        else if(N == "size")
+        {
+            size();
+        }
+        else if(N == "empty")
+        {
+            empty();
+        }
+        else if(N == "top")
+        {
+            top();
+        }
+        k--;
+    }
     
     return 0;
 }
