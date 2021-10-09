@@ -6,83 +6,22 @@ using namespace std;
 #include <list>
 #include <string>
 
-const int MX = 1000005;
-int dat[MX];
-int pos = 0;
+int A[3];
 
-void pushX(int X)
-{
-    dat[pos++] = X;
-}
-void pop()
-{
-    if(pos != 0)
-    {
-    cout << dat[pos-1] << '\n'; 
-        pos--;
-    }
-    else
-    {
-      cout << -1 << '\n';   
-    }
-}
-void size()
-{
-    cout << pos << '\n';
-}
-void empty()
-{
-    if(pos == 0)cout << 1 << '\n';
-    else
-    {
-        cout << 0 << '\n';
-    }
-}
-void top()
-{
-    if(pos != 0)
-    {
-    cout << dat[pos-1] << '\n';
-    }
-    else
-    {
-        cout << -1 << '\n';
-    }
-}
-
+// sort 사용해보기
 int main()
 {
-    int k = 0;
-    cin >> k;
-    
-    while(k > 0)
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+    for(int i = 0; i < 3; i++)
     {
-        string N = "";
-        cin >> N;
+        cin >> A[i];
+    }
+    sort(A, A+3);
     
-        if(N == "push")
-        {
-            int X;
-            cin >> X;
-            pushX(X);
-        }
-        else if(N == "pop")
-        {
-            pop();
-        }
-        else if(N == "size")
-        {
-            size();
-        }
-        else if(N == "empty")
-        {
-            empty();
-        }
-        else if(N == "top")
-        {
-            top();
-        }
-        k--;
+    for(int i = 0; i < 3; i++)
+    {
+        cout << A[i] <<' ';
     }
     
     return 0;
