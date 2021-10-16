@@ -13,13 +13,26 @@ int main()
     
     int N = 0;
     cin >> N;
-    while(N--)
+    
+    int k = N;
+    int i = 1;
+    while(k--)
     {
-        int A = 0;
-        int B = 0;
-        cin >> A;
-        cin >> B;
-        cout << A+B << '\n';
+        int b = k;
+        while(b--)
+        {
+                cout << " ";
+        }
+        
+        int s = 2 * i - 1;
+        
+        while(s--)
+        {
+            cout << "*";
+        }
+        
+        cout << '\n';
+        i++;
     }
     return 0;
 }
