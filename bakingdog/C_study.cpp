@@ -13,26 +13,37 @@ int main()
     
     int N = 0;
     cin >> N;
-    
-    int k = N;
-    int i = 1;
-    while(k--)
+    for(int i = N - 1; i >0; i--)
     {
-        int b = k;
-        while(b--)
-        {
-                cout << " ";
-        }
-        
-        int s = 2 * i - 1;
-        
+        int s = i;
         while(s--)
+        {
+            cout << " ";
+        }
+        int k = (N - i) * 2 - 1;
+        while(k--)
         {
             cout << "*";
         }
-        
         cout << '\n';
-        i++;
+    }
+    
+    for(int i = 0; i < N; i++)
+    {
+        int s = i;
+        if(i > 0)
+        {
+            while(s--)
+            {
+                cout << " ";
+            }
+        }
+        int k = (N-i)*2 -1;
+        while(k--)
+        {
+            cout << "*";
+        }
+        cout << '\n';
     }
     return 0;
 }
