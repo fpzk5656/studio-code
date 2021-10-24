@@ -6,34 +6,41 @@ using namespace std;
 #include <list>
 #include <string>
 
-int s[2000001];
-int k[1000001];
+int ppp[10000];
+int mmm[10000];
+
 int main()
 {
     ios::sync_with_stdio(0);
     cin.tie(0);
     int N = 0;
     cin >> N;
-    //int k[N];
+    
     for(int i = 0; i < N; i++)
     {
-        int c = 0;
-        cin >> c;
-        k[i] = c;
-        s[c] = 1 + i;
+        int t = 0;
+        cin >> t;
+        if(t > -1)
+        {
+            ppp[t]++;
+        }
+        else
+        {
+            t *= -1;
+            mmm[t]++;
+        }
     }
-    int x = 0;
-    cin >> x;
-    int cnt = 0;
-    for(int i = 0; i < N; i++)
+    int v = 0;
+    cin >> v;
+    
+    if(v > -1)
     {
-        int t = x - k[i];
-        
-        //S[t]에 숫자가 있고, S[t]에 주어진 번호가 S[k[i]보다 더 크다면
-        if(s[t] > 0 && s[t] > s[k[i]])cnt++;
+        cout << ppp[v];
     }
-    
-    cout << cnt;
-    
+    else
+    {
+        v *= -1;
+        cout << mmm[v];
+    }
     return 0;
 }
