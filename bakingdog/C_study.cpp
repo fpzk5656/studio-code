@@ -6,41 +6,48 @@ using namespace std;
 #include <list>
 #include <string>
 
-int ppp[10000];
-int mmm[10000];
+int sexual[1000];
+int grade[1000];
+int roomCnt[2][7];
 
 int main()
 {
     ios::sync_with_stdio(0);
     cin.tie(0);
+    
     int N = 0;
-    cin >> N;
+    cin >> N;    // 학생 수
+    int k = 0;
+    cin >> k;    // 방 최대 인원
+    int s,y = 0;
+    // 성별은 0, 1로 구분/ 학년은 1~6까지
     
     for(int i = 0; i < N; i++)
     {
-        int t = 0;
-        cin >> t;
-        if(t > -1)
-        {
-            ppp[t]++;
-        }
-        else
-        {
-            t *= -1;
-            mmm[t]++;
-        }
+        // 성별
+        cin >> s;
+        // 학년
+        cin >> y;
+        
+        //sexual[s]++;
+        //grade[y]++;
+        roomCnt[s][y]++;
     }
-    int v = 0;
-    cin >> v;
+    int count = 0;
     
-    if(v > -1)
+    for(int i = 0; i < 2; i++)
     {
-        cout << ppp[v];
+        for(int j = 1; j < 7; j++)
+        {
+            count += (roomCnt[i][j] / k);
+            roomCnt[i][j] %= k;
+            if(roomCnt[i][j] > 0)
+            {
+                count++;
+            }
+        }
     }
-    else
-    {
-        v *= -1;
-        cout << mmm[v];
-    }
+    
+    cout << count;
     return 0;
 }
